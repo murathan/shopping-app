@@ -1,9 +1,8 @@
-import {StyledFooter, StyledContent} from "./styled";
+import { StyledFooter, StyledContent } from "./styled";
 
 const Footer = () => {
-    return <StyledFooter>
-                <StyledContent />
-            </StyledFooter>
-}
+	const currentYear = new Date().getFullYear();
+	return <StyledFooter>©{currentYear} Altogic • Privacy Policy</StyledFooter>;
+};
 
 export default Footer;
