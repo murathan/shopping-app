@@ -1,14 +1,11 @@
-import StyledHeader from "./styled";
-import { useShoppingContext } from "../../../context/ShoppingContext";
+import StyledHeader from './styled'
 
 const Header = () => {
-	const { increaseAddedProduct } = useShoppingContext();
-	return (
-		<>
-			<StyledHeader />
-			<button onClick={() => increaseAddedProduct(8945189)}>Buttonn</button>
-		</>
-	);
-};
+  return (
+    <>
+      <StyledHeader />
+    </>
+  )
+}
 
-export default Header;
+export default Header
