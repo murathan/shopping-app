@@ -5,6 +5,9 @@ const StyledProductsWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
+	margin-top: 16px;
+	background-color: #FFFFFF;
+	box-shadow: background: rgba(255, 255, 255, 1);
 `;
 
 const StyledProductCard = styled.div`
@@ -19,12 +22,17 @@ const StyledProductCard = styled.div`
 	}
 `;
 
-const ProductImage = styled.div`
-	width: 92px;
-	height: 92px;
-	background-image: url("https://assets.adidas.com/images/w_600,f_auto,q_auto/8df5ab4346d7475ebb08a91500a047d3_9366/Continental_80_Ayakkabi_Beyaz_G27706_01_standard.jpg");
-	background-size: contain;
+const ProductImageWrapper = styled.div`
+	padding: 16px;
 	margin-bottom: 24px;
+	border-radius: 16px;
+	border: 1px solid rgba(243, 240, 254, 1);
+	> div {
+		width: 92px;
+		height: 92px;
+		background-image: url("https://assets.adidas.com/images/w_600,f_auto,q_auto/8df5ab4346d7475ebb08a91500a047d3_9366/Continental_80_Ayakkabi_Beyaz_G27706_01_standard.jpg");
+		background-size: contain;
+	}
 `;
 
 const StyledPrice = styled.span`
@@ -65,7 +73,7 @@ const StyledProductRow = styled(StyledRow)`
 export {
 	StyledProductsWrapper,
 	StyledProductCard,
-	ProductImage,
+	ProductImageWrapper,
 	StyledPrice,
 	StyledName,
 	StyledButton,

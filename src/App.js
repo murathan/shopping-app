@@ -12,13 +12,22 @@ import CheckButtonGroup from "./components/productType";
 import Products from "./components/products";
 import Basket from "./components/basket";
 
-const searchList = [
+const brandList = [
 	{ name: "Beach", id: "01" },
 	{ name: "People", id: "02" },
 	{ name: "dasassa", id: "03" },
 	{ name: "dasdasdas", id: "04" },
 	{ name: "dasdasdasdas", id: "05" },
 	{ name: "fafasdfdfa", id: "06" },
+];
+
+const tagList = [
+	{ name: "fasas", id: "01" },
+	{ name: "fasfsas", id: "02" },
+	{ name: "fasfasas", id: "03" },
+	{ name: "savcsda", id: "04" },
+	{ name: "qwrqwqw", id: "05" },
+	{ name: "ktuykjyuk", id: "06" },
 ];
 
 const productTypeList = [
@@ -52,7 +61,8 @@ function App() {
 					<Row>
 						<Col size='small'>
 							<Sorting />
-							<SearchBox title='Tag' data={searchList} />
+							<SearchBox title='Brand' data={brandList} />
+							<SearchBox title='Tag' data={tagList} />
 						</Col>
 						<Col size='large'>
 							<Title size='large'>Products</Title>

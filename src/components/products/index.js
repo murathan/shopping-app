@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
 	StyledProductsWrapper,
 	StyledProductCard,
-	ProductImage,
+	ProductImageWrapper,
 	StyledPrice,
 	StyledName,
 	StyledButton,
@@ -30,7 +30,9 @@ const Products = ({ data }) => {
 				<StyledProductRow key={i}>
 					{row.map((product, i) => (
 						<StyledProductCard>
-							<ProductImage />
+							<ProductImageWrapper>
+								<div></div>
+							</ProductImageWrapper>
 							<StyledPrice>₺ 14,99</StyledPrice>
 							<StyledName>{product.name}</StyledName>
 							<StyledButton>Add</StyledButton>
