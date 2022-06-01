@@ -3,18 +3,17 @@ import { StyledRow } from "../layout/grid/styled";
 
 const StyledProductsWrapper = styled.div`
 	display: flex;
+	align-items: center;
 	flex-direction: column;
 	padding: 20px;
 	margin-top: 16px;
-	background-color: #FFFFFF;
-	box-shadow: background: rgba(255, 255, 255, 1);
+	background-color: rgba(255, 255, 255, 1);
 `;
 
 const StyledProductCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-top: 16px;
 	width: 124px;
 	height: 225px;
 	:not(:last-child) {

@@ -35,22 +35,6 @@ const productTypeList = [
 	{ name: "mug", id: "02" },
 ];
 
-const productList = [
-	{ name: "1", id: "01" },
-	{ name: "2", id: "03" },
-	{ name: "3", id: "04" },
-	{ name: "444Adidas", id: "02" },
-	{ name: "5555Adidas", id: "05" },
-	{ name: "666Adidas", id: "06" },
-	{ name: "77766754Adidas", id: "07" },
-	{ name: "8888Adidas", id: "08" },
-	{ name: "9999Adidas", id: "09" },
-	{ name: "1001010Adidas", id: "10" },
-	{ name: "11111Adidas", id: "11" },
-	{ name: "121212Adidas", id: "12" },
-	{ name: "13313Adidas", id: "13" },
-];
-
 function App() {
 	return (
 		<ShoppingContextProvider>
@@ -67,7 +51,7 @@ function App() {
 						<Col size='large'>
 							<Title size='large'>Products</Title>
 							<CheckButtonGroup data={productTypeList} />
-							<Products data={productList} />
+							<Products />
 						</Col>
 						<Col size='small'>
 							<Basket />
