@@ -9,10 +9,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Content = styled.div`
-	min-height: 100%;
 	padding: 40px 104px;
 	background-color: #fafafa;
-	height: calc(100vh - 256.63px);
+	min-height: calc(100vh - 256.63px);
 `;
 
 export { GlobalStyle, Content };
