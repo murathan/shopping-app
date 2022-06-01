@@ -31,8 +31,6 @@ const SearchBox = ({ title, data }) => {
 		return item.name.toLowerCase().includes(searchInput.toLowerCase());
 	});
 
-	console.log(searchedList);
-
 	return (
 		<StyledSearchBox>
 			<Title size='small'>{title}s</Title>
