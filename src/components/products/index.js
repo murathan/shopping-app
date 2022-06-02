@@ -10,13 +10,27 @@ import {
 } from "./styled";
 import { arrayChunk } from "../../utils";
 import { useShoppingContext } from "../../context/ShoppingContext";
+import Pagination from "../pagination";
+
 const Products = () => {
 	const {
 		ProductReducer: { products },
 	} = useShoppingContext();
 	// const [addedProducts, setAddedProducts] = useState([])
+
 	const [currentPage, setCurrentPage] = useState(1);
-	const [productsPerPage, setProductsPerPage] = useState(16);
+	const [productCountPerPage, setProductCountPerPage] = useState(16);
+
+	const handleClick = (event) => {
+		setCurrentPage(Number(event.target.id));
+	};
+
+	const indexOfLastProduct = currentPage * productCountPerPage;
+	const indexOfFirstProduct = indexOfLastProduct - productCountPerPage;
+	const currentProducts = products.slice(
+		indexOfFirstProduct,
+		indexOfLastProduct
+	);
 
 	// const handleOnClick = (id) => {
 	//   let tempAddedProducts = [...addedProducts]
@@ -28,29 +42,6 @@ const Products = () => {
 	//   }
 	//   setAddedProducts(tempAddedProducts)
 	// }
-
-	const handleClick = (event) => {
-		setCurrentPage(Number(event.target.id));
-	};
-
-	// Logic for displaying current todos
-	const indexOfLastTodo = currentPage * productsPerPage;
-	const indexOfFirstTodo = indexOfLastTodo - productsPerPage;
-	const currentProducts = products.slice(indexOfFirstTodo, indexOfLastTodo);
-
-	// Logic for displaying page numbers
-	const pageNumbers = [];
-	for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
-		pageNumbers.push(i);
-	}
-
-	const renderPageNumbers = pageNumbers.map((number) => {
-		return (
-			<li key={number} id={number} onClick={handleClick}>
-				{number}
-			</li>
-		);
-	});
 
 	return (
 		<div>
@@ -70,9 +61,13 @@ const Products = () => {
 					</StyledProductRow>
 				))}
 			</StyledProductsWrapper>
-			<ul style={{ display: "flex", gap: "8px", listStyle: "none" }}>
-				{renderPageNumbers}
-			</ul>
+			<Pagination
+				items={products}
+				itemCountPerPage={productCountPerPage}
+				currentPage={currentPage}
+				setCurrentPage={setCurrentPage}
+				handleClick={handleClick}
+			/>
 		</div>
 	);
 };
