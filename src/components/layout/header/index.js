@@ -1,13 +1,16 @@
-import { StyledHeader, BasketInHeader, StyledPriceInHeader } from "./styled";
-import basketIcon from "../../../icons/basket.svg";
+import { StyledHeader, BasketInHeader, StyledImg } from './styled';
+import basketIcon from '../../../icons/basket.svg';
+import { useShoppingContext } from '../../../context/ShoppingContext';
+import { Price } from '../../typography';
 
 const Header = () => {
+	const { totalPrice } = useShoppingContext();
 	return (
 		<>
 			<StyledHeader>
 				<BasketInHeader>
-					<img src={basketIcon} />
-					<StyledPriceInHeader>₺ 39,97</StyledPriceInHeader>
+					<StyledImg src={basketIcon} />
+					{totalPrice > 0 && <Price inHeader>{totalPrice}</Price>}
 				</BasketInHeader>
 			</StyledHeader>
 		</>

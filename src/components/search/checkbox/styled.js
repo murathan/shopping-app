@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import colors from '../../../styling/colors';
 
 const StyledCheckBox = styled.input`
 	margin-right: 8px;
@@ -6,17 +7,17 @@ const StyledCheckBox = styled.input`
 	width: 22px;
 	height: 22px;
 	float: left;
-	box-shadow: 0px 1px 7px rgba(93, 56, 192, 0.4);
-	-webkit-appearance: ${(props) => !props.checked && "none"};
-	-moz-appearance: ${(props) => !props.checked && "none"};
-	appearance: ${(props) => !props.checked && "none"};
+	box-shadow: 0px 1px 7px ${colors.purpleShadow};
+	-webkit-appearance: ${(props) => !props.checked && 'none'};
+	-moz-appearance: ${(props) => !props.checked && 'none'};
+	appearance: ${(props) => !props.checked && 'none'};
 `;
 const Container = styled.div`
 	display: flex;
 	align-items: center;
 	margin-bottom: 18px;
 	&:after {
-		content: "";
+		content: '';
 		display: table;
 		clear: both;
 	}

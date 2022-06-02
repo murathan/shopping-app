@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import colors from '../../../styling/colors';
 
 const StyledFooter = styled.footer`
-	color: #1976d2;
+	color: ${colors.blue};
 	font-size: 13px;
 	display: flex;
 	justify-content: center;

@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { StyledRow } from "../layout/grid/styled";
+import styled from 'styled-components';
+import { StyledRow } from '../layout/grid/styled';
+import colors from '../../styling/colors';
 
 const StyledProductsWrapper = styled.div`
 	display: flex;
@@ -7,7 +8,7 @@ const StyledProductsWrapper = styled.div`
 	flex-direction: column;
 	padding: 20px;
 	margin-top: 16px;
-	background-color: rgba(255, 255, 255, 1);
+	background-color: ${colors.white.primary};
 	min-height: 1000px;
 `;
 
@@ -16,7 +17,6 @@ const StyledProductCard = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 124px;
-	height: 225px;
 	:not(:last-child) {
 		margin-right: 24px;
 	}
@@ -24,44 +24,36 @@ const StyledProductCard = styled.div`
 
 const ProductImageWrapper = styled.div`
 	padding: 16px;
-	margin-bottom: 24px;
+	margin-bottom: 8px;
 	border-radius: 16px;
-	border: 1px solid rgba(243, 240, 254, 1);
+	border: 1px solid ${colors.white.alternative};
 	> div {
 		width: 92px;
 		height: 92px;
-		background-image: url("https://assets.adidas.com/images/w_600,f_auto,q_auto/8df5ab4346d7475ebb08a91500a047d3_9366/Continental_80_Ayakkabi_Beyaz_G27706_01_standard.jpg");
-		background-size: contain;
+		background-image: url('https://source.unsplash.com/92x92');
+		background-size: cover;
 	}
-`;
-
-const StyledPrice = styled.span`
-	width: 100%;
-	text-align: left;
-	font-size: 14px;
-	color: #1976d2;
-	font-weight: 700;
-	margin-bottom: 12px;
 `;
 
 const StyledName = styled.span`
 	width: 100%;
 	text-align: left;
 	font-size: 14px;
-	color: #191919;
-	margin-bottom: 8px;
-	height: 40px;
+	color: ${colors.black};
+	min-height: 40px;
+	margin-top: 10px;
 `;
 
 const StyledButton = styled.button`
 	width: 100%;
 	height: 22px;
-	color: #f2f0fd;
-	background-color: #1976d2;
+	color: ${colors.white.quaternary};
+	background-color: ${colors.blue};
 	margin-top: 8px;
 	border: none;
 	border-radius: 2px;
 	font-size: 12px;
+	cursor: pointer;
 `;
 
 const StyledProductRow = styled(StyledRow)`
@@ -74,7 +66,6 @@ export {
 	StyledProductsWrapper,
 	StyledProductCard,
 	ProductImageWrapper,
-	StyledPrice,
 	StyledName,
 	StyledButton,
 	StyledProductRow,

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import colors from '../../styling/colors';
 
 const StyledSearchBox = styled.div`
 	width: 296px;
@@ -9,14 +10,14 @@ const StyledSearchBox = styled.div`
 const SearchListWrapper = styled.div`
 	padding: 24px;
 	margin-top: 12px;
-	background-color: #ffffff;
+	background-color: ${colors.white.primary};
 `;
 
 const StyledInput = styled.input`
 	width: 248px;
 	height: 48px;
-	border: 2px solid #e0e0e0;
-	color: #a8a8a8;
+	border: 2px solid ${colors.white.secondary};
+	color: ${colors.white.tertiary};
 	font-size: 14px;
 	padding: 12px 16px;
 `;
@@ -31,7 +32,7 @@ const StyledListContainer = styled.div`
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: #e0e0e0;
+		background: ${colors.white.secondary};
 		border-radius: 4px;
 	}
 `;
