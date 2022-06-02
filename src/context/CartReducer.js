@@ -1,5 +1,4 @@
 const CartReducer = (state, action) => {
-	console.log(state);
 	switch (action.type) {
 		case "INCREASE_PRODUCT":
 			return {

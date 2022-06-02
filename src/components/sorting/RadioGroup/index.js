@@ -9,8 +9,6 @@ const RadioGroup = () => {
 		setSortingChoice(e.target.value);
 	};
 
-	console.log(sortingChoice);
-
 	return (
 		<RadioGroupWrapper onChange={handleOnChange}>
 			<RadioWrapper>

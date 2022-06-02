@@ -8,6 +8,7 @@ const StyledProductsWrapper = styled.div`
 	padding: 20px;
 	margin-top: 16px;
 	background-color: rgba(255, 255, 255, 1);
+	min-height: 1000px;
 `;
 
 const StyledProductCard = styled.div`
