@@ -1,6 +1,6 @@
-import { PaginationWrapper, StyledUL, StyledLi, StyledButton } from "./styled";
-import ArrowLeft from "../../icons/arrow-left.svg";
-import ArrowRight from "../../icons/arrow-right.svg";
+import { PaginationWrapper, StyledUL, StyledLi, StyledButton } from './styled';
+import ArrowLeft from '../../icons/arrow-left.svg';
+import ArrowRight from '../../icons/arrow-right.svg';
 
 const Pagination = ({
 	items,
@@ -13,7 +13,7 @@ const Pagination = ({
 	for (let i = 1; i <= Math.ceil(items.length / itemCountPerPage); i++) {
 		pageNumbers.push(i);
 	}
-	console.log(pageNumbers.length);
+
 	const goPrevPage = () => {
 		if (currentPage !== 1) setCurrentPage((prevState) => prevState - 1);
 	};

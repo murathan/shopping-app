@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import colors from '../../styling/colors';
 
 const StyledCheckButton = styled.button`
 	height: 30px;
@@ -6,8 +7,9 @@ const StyledCheckButton = styled.button`
 	padding: 6px 16px;
 	border-radius: 2px;
 	border: none;
-	color: ${(props) => (props.active ? "#F2F0FD" : "#1976D2")};
-	background-color: ${(props) => (props.active ? "#1976D2" : "#F2F0FD")};
+	color: ${(props) => (props.active ? colors.white.quaternary : colors.blue)};
+	background-color: ${(props) =>
+		props.active ? colors.blue : colors.white.quaternary};
 	&:not(:last-child) {
 		margin-right: 10px;
 	}

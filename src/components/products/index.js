@@ -1,25 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import {
 	StyledProductsWrapper,
 	StyledProductCard,
 	ProductImageWrapper,
-	StyledPrice,
 	StyledName,
 	StyledButton,
 	StyledProductRow,
-} from "./styled";
-import { arrayChunk } from "../../utils";
-import { useShoppingContext } from "../../context/ShoppingContext";
-import Pagination from "../pagination";
+} from './styled';
+import { arrayChunk } from '../../utils';
+import { useShoppingContext } from '../../context/ShoppingContext';
+import Pagination from '../pagination';
+import useDeviceSize from '../../hooks/useDeviceSize';
+import { Price } from '../typography';
 
 const Products = () => {
 	const {
 		ProductReducer: { products },
+		fetchProducts,
+		addProduct,
 	} = useShoppingContext();
 	// const [addedProducts, setAddedProducts] = useState([])
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productCountPerPage, setProductCountPerPage] = useState(16);
+	const deviceSize = useDeviceSize();
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
 
 	const handleClick = (event) => {
 		setCurrentPage(Number(event.target.id));
@@ -48,14 +56,16 @@ const Products = () => {
 			<StyledProductsWrapper>
 				{arrayChunk(currentProducts, 4).map((row, i) => (
 					<StyledProductRow key={i}>
-						{row.map((product, i) => (
-							<StyledProductCard>
+						{row.map((product) => (
+							<StyledProductCard key={product.id}>
 								<ProductImageWrapper>
 									<div></div>
 								</ProductImageWrapper>
-								<StyledPrice>₺ 14,99</StyledPrice>
+								<Price>{product.price}</Price>
 								<StyledName>{product.name}</StyledName>
-								<StyledButton>Add</StyledButton>
+								<StyledButton onClick={() => addProduct(product)}>
+									Add
+								</StyledButton>
 							</StyledProductCard>
 						))}
 					</StyledProductRow>
