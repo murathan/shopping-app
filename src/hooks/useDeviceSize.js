@@ -15,7 +15,7 @@ const useDeviceSize = () => {
 			setDeviceSize('sm');
 		} else if (deviceSizePx <= 992) {
 			setDeviceSize('md');
-		} else if (deviceSizePx <= 1200) {
+		} else if (deviceSizePx <= 1400) {
 			setDeviceSize('lg');
 		} else {
 			setDeviceSize('xl');

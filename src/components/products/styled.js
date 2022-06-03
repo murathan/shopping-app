@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { StyledRow } from '../layout/grid/styled';
 import colors from '../../styling/colors';
+import mediaQueries from '../../styling/mediaQueries';
 
 const StyledProductsWrapper = styled.div`
 	display: flex;
@@ -59,6 +60,9 @@ const StyledButton = styled.button`
 const StyledProductRow = styled(StyledRow)`
 	&:not(:first-child) {
 		margin-top: 20px;
+	}
+	${mediaQueries.md} {
+		flex-direction: row;
 	}
 `;
 
