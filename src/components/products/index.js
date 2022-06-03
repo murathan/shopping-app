@@ -16,6 +16,7 @@ import { Price } from '../typography';
 const Products = () => {
 	const {
 		ProductReducer: { products },
+		FilterReducer: { brands, tags, types, sortingChoice },
 		fetchProducts,
 		addProduct,
 	} = useShoppingContext();
@@ -24,32 +25,43 @@ const Products = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productCountPerPage, setProductCountPerPage] = useState(16);
 	const deviceSize = useDeviceSize();
-
 	useEffect(() => {
 		fetchProducts();
 	}, []);
-
 	const handleClick = (event) => {
 		setCurrentPage(Number(event.target.id));
 	};
+	const brandFilteredProducts =
+		brands.length > 0
+			? products.filter((product) => brands.includes(product.manufacturer))
+			: products;
+	const brandAndTagFilteredProducts =
+		tags.length > 0
+			? brandFilteredProducts.filter((product) =>
+					tags.some((tag) => product.tags.includes(tag))
+			  )
+			: brandFilteredProducts;
+
+	const finalFilteredProducts =
+		types.length > 0
+			? brandAndTagFilteredProducts.filter((product) =>
+					types.includes(product.itemType)
+			  )
+			: [];
+
+	const sortedProducts = finalFilteredProducts.sort((a, b) => {
+		if (sortingChoice === 'priceLowToHigh') return a.price - b.price;
+		else if (sortingChoice === 'priceHighToLow') return b.price - a.price;
+		else if (sortingChoice === 'newToOld') return b.added - a.added;
+		else if (sortingChoice === 'oldToNew') return a.added - b.added;
+	});
 
 	const indexOfLastProduct = currentPage * productCountPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productCountPerPage;
-	const currentProducts = products.slice(
+	const currentProducts = sortedProducts.slice(
 		indexOfFirstProduct,
 		indexOfLastProduct
 	);
-
-	// const handleOnClick = (id) => {
-	//   let tempAddedProducts = [...addedProducts]
-	//   let find = tempAddedProducts.indexOf(id)
-	//   if (find > -1) {
-	//     tempAddedProducts.splice(find, 1)
-	//   } else {
-	//     tempAddedProducts.push(id)
-	//   }
-	//   setAddedProducts(tempAddedProducts)
-	// }
 
 	return (
 		<div>
@@ -72,7 +84,7 @@ const Products = () => {
 				))}
 			</StyledProductsWrapper>
 			<Pagination
-				items={products}
+				items={sortedProducts}
 				itemCountPerPage={productCountPerPage}
 				currentPage={currentPage}
 				setCurrentPage={setCurrentPage}

@@ -10,22 +10,24 @@ import {
 import { combineReducers } from '../utils';
 import { CartReducer } from './CartReducer';
 import { ProductReducer } from './ProductReducer';
-import { productList } from '../dummyData';
+import { FilterReducer } from './FilterReducer';
 
 const initialState = {
 	CartReducer: { addedProducts: [] },
 	ProductReducer: { products: [] },
+	FilterReducer: {
+		brands: [],
+		tags: [],
+		types: ['mug', 'shirt'],
+		sortingChoice: '',
+	},
 };
 
-// {
-//   sorting: 'priceLowToHigh',
-//   brands: [],
-//   tags: [],
-//   type: 'shirt',
-//   products: productList,
-//   addedProducts: []
-// }
-const rootReducer = combineReducers({ CartReducer, ProductReducer });
+const rootReducer = combineReducers({
+	CartReducer,
+	ProductReducer,
+	FilterReducer,
+});
 
 const ShoppingContext = createContext();
 const useShoppingContext = () => useContext(ShoppingContext);
@@ -44,7 +46,6 @@ const ShoppingContextProvider = ({ children }) => {
 	}, [store[0].CartReducer.addedProducts]);
 
 	const fetchProducts = useCallback(async () => {
-		// dispatch({ type: 'FETCH_PRODUCTS', payload: productList });
 		await fetch(
 			'https://my-json-server.typicode.com/murathan/shopping-app-api/items'
 		)
@@ -68,6 +69,23 @@ const ShoppingContextProvider = ({ children }) => {
 	const increaseAddedProduct = useCallback((productId) => {
 		dispatch({ type: 'INCREASE_PRODUCT', payload: productId });
 	}, []);
+
+	const addBrandFilter = useCallback((brand) => {
+		dispatch({ type: 'ADD_BRAND_FILTER', payload: brand });
+	}, []);
+
+	const addTagFilter = useCallback((tag) => {
+		dispatch({ type: 'ADD_TAG_FILTER', payload: tag });
+	}, []);
+
+	const addTypeFilter = useCallback((type) => {
+		dispatch({ type: 'ADD_TYPE_FILTER', payload: type });
+	}, []);
+
+	const setSortingChoice = useCallback((choice) => {
+		dispatch({ type: 'SET_SORTING_CHOICE', payload: choice });
+	}, []);
+
 	return (
 		<ShoppingContext.Provider
 			value={{
@@ -77,6 +95,10 @@ const ShoppingContextProvider = ({ children }) => {
 				increaseAddedProduct,
 				decreaseAddedProduct,
 				totalPrice,
+				addBrandFilter,
+				addTagFilter,
+				addTypeFilter,
+				setSortingChoice,
 			}}
 		>
 			{children}

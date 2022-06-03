@@ -1,68 +1,49 @@
-import { useState } from "react";
-import {
-	StyledSearchBox,
-	SearchListWrapper,
-	StyledInput,
-	StyledListContainer,
-} from "./styled";
-import { Title } from "../typography";
-import CheckBox from "./checkbox";
+import { useEffect } from 'react';
+import SearchBox from './SearchBox';
+import { useShoppingContext } from '../../context/ShoppingContext';
 
-const SearchBox = ({ title, data }) => {
-	const [selections, setSelections] = useState([]);
-	const [searchInput, setSearchInput] = useState("");
+const SearchBoxGroup = () => {
+	const {
+		ProductReducer: { products },
+		addBrandFilter,
+		addTagFilter,
+	} = useShoppingContext();
 
-	const handleSearchInputChange = (e) => {
-		setSearchInput(e.target.value);
-	};
-
-	const handleCheckBoxChange = (key) => {
-		let tempSelections = [...selections];
-		let find = tempSelections.indexOf(key);
-		if (find > -1) {
-			tempSelections.splice(find, 1);
-		} else {
-			tempSelections.push(key);
+	useEffect(() => {
+		if (products.length > 0) {
+			getBrands();
+			getTags();
 		}
-		setSelections(tempSelections);
+	}, [products]);
+
+	const getBrands = () => {
+		const brands = [
+			...new Set(products.map((product) => product.manufacturer)),
+		];
+		return brands;
 	};
 
-	const searchedList = data.filter((item) => {
-		return item.name.toLowerCase().includes(searchInput.toLowerCase());
-	});
+	const getTags = () => {
+		let tags = [];
+		products.forEach((product) =>
+			product.tags.forEach((tag) => tags.push(tag))
+		);
+		return [...new Set(tags)];
+	};
+
+	const tags = getTags();
+	const brands = getBrands();
 
 	return (
-		<StyledSearchBox>
-			<Title size='small'>{title}s</Title>
-			<SearchListWrapper>
-				<StyledInput
-					name='searchInput'
-					value={searchInput}
-					onChange={handleSearchInputChange}
-					placeholder={`Search ${title}`}
-				/>
-				<StyledListContainer>
-					{searchInput
-						? searchedList.map((item) => (
-								<CheckBox
-									key={item.id}
-									label={item.name}
-									onChange={() => handleCheckBoxChange(item.name)}
-									selected={selections.includes(item.name)}
-								/>
-						  ))
-						: data.map((item) => (
-								<CheckBox
-									key={item.id}
-									label={item.name}
-									onChange={() => handleCheckBoxChange(item.name)}
-									selected={selections.includes(item.name)}
-								/>
-						  ))}
-				</StyledListContainer>
-			</SearchListWrapper>
-		</StyledSearchBox>
+		<>
+			{brands.length > 0 && (
+				<SearchBox title='Brand' data={brands} addFilter={addBrandFilter} />
+			)}
+			{tags.length > 0 && (
+				<SearchBox title='Tag' data={tags} addFilter={addTagFilter} />
+			)}
+		</>
 	);
 };
 
-export default SearchBox;
+export default SearchBoxGroup;
