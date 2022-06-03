@@ -1,8 +1,20 @@
-import { useState } from "react";
-import { StyledCheckButtonGroup, StyledCheckButton } from "./styled";
+import { useState } from 'react';
+import { StyledCheckButtonGroup, StyledCheckButton } from './styled';
+import { useShoppingContext } from '../../context/ShoppingContext';
 
-const CheckButtonGroup = ({ data }) => {
-	const [selectedTypes, setSelectedTypes] = useState(data);
+const CheckButtonGroup = () => {
+	const {
+		ProductReducer: { products },
+		FilterReducer: { types },
+		addTypeFilter,
+	} = useShoppingContext();
+
+	const getTypes = () => {
+		const types = [...new Set(products.map((product) => product.itemType))];
+		return types;
+	};
+	const totalTypes = getTypes();
+	const [selectedTypes, setSelectedTypes] = useState(totalTypes);
 
 	const handleCheckButtonChange = (key) => {
 		let tempSelectedTypes = [...selectedTypes];
@@ -13,17 +25,18 @@ const CheckButtonGroup = ({ data }) => {
 			tempSelectedTypes.push(key);
 		}
 		setSelectedTypes(tempSelectedTypes);
+		addTypeFilter(key);
 	};
 
 	return (
 		<StyledCheckButtonGroup>
-			{data.map((product) => (
+			{totalTypes.map((type) => (
 				<StyledCheckButton
-					key={product.name}
-					onClick={() => handleCheckButtonChange(product.name)}
-					active={selectedTypes.includes(product.name)}
+					key={type}
+					onClick={() => handleCheckButtonChange(type)}
+					active={types.includes(type)}
 				>
-					{product.name}
+					{type}
 				</StyledCheckButton>
 			))}
 		</StyledCheckButtonGroup>
