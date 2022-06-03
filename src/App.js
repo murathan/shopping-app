@@ -20,16 +20,16 @@ function App() {
 				<Header />
 				<Content>
 					<Row>
-						<Col size='small'>
+						<Col $size='small'>
 							<Sorting />
 							<SearchBoxGroup />
 						</Col>
-						<Col size='large'>
-							<Title size='large'>Products</Title>
+						<Col $size='large'>
+							<Title $size='large'>Products</Title>
 							<CheckButtonGroup />
 							<Products />
 						</Col>
-						<Col size='small'>
+						<Col $size='small'>
 							<Basket />
 						</Col>
 					</Row>

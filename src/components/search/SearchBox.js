@@ -7,6 +7,7 @@ import {
 } from './styled';
 import { Title } from '../typography';
 import CheckBox from './checkbox';
+import PropTypes from 'prop-types';
 
 const SearchBox = ({ title, data, addFilter }) => {
 	const [selections, setSelections] = useState([]);
@@ -64,6 +65,12 @@ const SearchBox = ({ title, data, addFilter }) => {
 			</SearchListWrapper>
 		</StyledSearchBox>
 	);
+};
+
+SearchBox.propTypes = {
+	title: PropTypes.string,
+	data: PropTypes.arrayOf(PropTypes.string),
+	addFilter: PropTypes.func,
 };
 
 export default SearchBox;

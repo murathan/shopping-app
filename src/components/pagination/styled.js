@@ -30,7 +30,7 @@ const StyledButton = styled.button`
 	border: none;
 	background: none;
 	font-size: 14px;
-	color: ${(props) => (props.type === 'prev' ? colors.blue : colors.gray)};
+	color: ${(props) => (props.$type === 'prev' ? colors.blue : colors.gray)};
 	cursor: pointer;
 	display: flex;
 	align-items: center;

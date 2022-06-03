@@ -10,7 +10,7 @@ const Header = () => {
 			<StyledHeader>
 				<BasketInHeader>
 					<StyledImg src={basketIcon} />
-					{totalPrice > 0 && <Price inHeader>{totalPrice}</Price>}
+					{totalPrice > 0 && <Price $inHeader>{totalPrice}</Price>}
 				</BasketInHeader>
 			</StyledHeader>
 		</>
