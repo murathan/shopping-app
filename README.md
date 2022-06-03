@@ -35,3 +35,5 @@ Context API is used for state management.
 Datas have been fetched from the 'https://my-json-server.typicode.com/murathan/shopping-app-api/items' api. Due to the maximum data limit of the service provider, 24 datas could be retrieved.
 
 The 'https://source.unsplash.com/92x92' api is used for product images. Since it is unique according to time, the images are obtained the same as each other.
+
+You can visit the live version on [here] (https://shopping-app-murathan.vercel.app/).
