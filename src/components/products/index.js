@@ -24,13 +24,23 @@ const Products = () => {
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productCountPerPage, setProductCountPerPage] = useState(16);
-	const deviceSize = useDeviceSize();
+
 	useEffect(() => {
 		fetchProducts();
 	}, []);
 	const handleClick = (event) => {
 		setCurrentPage(Number(event.target.id));
 	};
+	let productPerRow = 4;
+	const deviceSize = useDeviceSize();
+	if (deviceSize === 'sm' || deviceSize === 'xs') {
+		productPerRow = 2;
+	} else if (deviceSize === 'md') {
+		productPerRow = 2;
+	} else if (deviceSize === 'lg') {
+		productPerRow = 3;
+	}
+
 	const brandFilteredProducts =
 		brands.length > 0
 			? products.filter((product) => brands.includes(product.manufacturer))
@@ -66,7 +76,7 @@ const Products = () => {
 	return (
 		<div>
 			<StyledProductsWrapper>
-				{arrayChunk(currentProducts, 4).map((row, i) => (
+				{arrayChunk(currentProducts, productPerRow).map((row, i) => (
 					<StyledProductRow key={i}>
 						{row.map((product) => (
 							<StyledProductCard key={product.id}>
