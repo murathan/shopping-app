@@ -13,7 +13,9 @@ import { ProductReducer } from './ProductReducer';
 import { FilterReducer } from './FilterReducer';
 
 const initialState = {
-	CartReducer: { addedProducts: [] },
+	CartReducer: {
+		addedProducts: JSON.parse(localStorage.getItem('basketItems')),
+	},
 	ProductReducer: { products: [] },
 	FilterReducer: {
 		brands: [],
