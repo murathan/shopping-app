@@ -26,6 +26,7 @@ const Basket = () => {
 			tempTotalPrice += product.price * product.count;
 		});
 		setTotalPrice(tempTotalPrice);
+		localStorage.setItem('basketItems', JSON.stringify(addedProducts));
 	}, [addedProducts]);
 	return (
 		<>
