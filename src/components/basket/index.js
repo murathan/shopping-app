@@ -22,9 +22,11 @@ const Basket = () => {
 
 	useEffect(() => {
 		let tempTotalPrice = 0;
-		addedProducts.forEach((product) => {
-			tempTotalPrice += product.price * product.count;
-		});
+		if (addedProducts) {
+			addedProducts.forEach((product) => {
+				tempTotalPrice += product.price * product.count;
+			});
+		}
 		setTotalPrice(tempTotalPrice);
 		localStorage.setItem('basketItems', JSON.stringify(addedProducts));
 	}, [addedProducts]);
