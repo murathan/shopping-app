@@ -41,9 +41,11 @@ const ShoppingContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		let tempTotalPrice = 0;
-		store[0].CartReducer.addedProducts.forEach((product) => {
-			tempTotalPrice += product.price * product.count;
-		});
+		if (store[0].CartReducer.addedProducts) {
+			store[0].CartReducer.addedProducts.forEach((product) => {
+				tempTotalPrice += product.price * product.count;
+			});
+		}
 		setTotalPrice(tempTotalPrice);
 	}, [store[0].CartReducer.addedProducts]);
 
