@@ -20,6 +20,7 @@ const CartReducer = (state, action) => {
 			};
 		case 'ADD_PRODUCT':
 			if (
+				state.addedProducts &&
 				!state.addedProducts.some((product) => product.id === action.payload.id)
 			) {
 				return {
