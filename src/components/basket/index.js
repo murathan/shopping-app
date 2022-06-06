@@ -30,7 +30,7 @@ const Basket = () => {
 	}, [addedProducts]);
 	return (
 		<>
-			{addedProducts.length > 0 && (
+			{addedProducts && addedProducts.length > 0 && (
 				<StyledBasket>
 					{addedProducts.map(
 						(product) =>
