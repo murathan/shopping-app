@@ -1,22 +1,32 @@
 const CartReducer = (state, action) => {
 	switch (action.type) {
 		case 'INCREASE_PRODUCT':
+			if (state.addedProducts) {
+				return {
+					...state,
+					addedProducts: state.addedProducts.map((product) =>
+						product.id === action.payload
+							? { ...product, count: product.count + 1 }
+							: product
+					),
+				};
+			}
 			return {
 				...state,
-				addedProducts: state.addedProducts.map((product) =>
-					product.id === action.payload
-						? { ...product, count: product.count + 1 }
-						: product
-				),
 			};
 		case 'DECREASE_PRODUCT':
+			if (state.addedProducts) {
+				return {
+					...state,
+					addedProducts: state.addedProducts.map((product) =>
+						product.id === action.payload && product.count >= 1
+							? { ...product, count: product.count - 1 }
+							: product
+					),
+				};
+			}
 			return {
 				...state,
-				addedProducts: state.addedProducts.map((product) =>
-					product.id === action.payload && product.count >= 1
-						? { ...product, count: product.count - 1 }
-						: product
-				),
 			};
 		case 'ADD_PRODUCT':
 			if (
@@ -31,13 +41,18 @@ const CartReducer = (state, action) => {
 					],
 				};
 			} else {
+				if (state.addedProducts) {
+					return {
+						...state,
+						addedProducts: state.addedProducts.map((product) =>
+							product.id === action.payload.id
+								? { ...product, count: product.count + 1 }
+								: product
+						),
+					};
+				}
 				return {
 					...state,
-					addedProducts: state.addedProducts.map((product) =>
-						product.id === action.payload.id
-							? { ...product, count: product.count + 1 }
-							: product
-					),
 				};
 			}
 		default:
