@@ -14,7 +14,9 @@ import { FilterReducer } from './FilterReducer';
 
 const initialState = {
 	CartReducer: {
-		addedProducts: JSON.parse(localStorage.getItem('basketItems')),
+		addedProducts: localStorage.getItem('basketItems')
+			? JSON.parse(localStorage.getItem('basketItems'))
+			: [],
 	},
 	ProductReducer: { products: [] },
 	FilterReducer: {
@@ -50,6 +52,8 @@ const ShoppingContextProvider = ({ children }) => {
 	}, [store[0].CartReducer.addedProducts]);
 
 	const fetchProducts = useCallback(async () => {
+		// https://my-json-server.typicode.com/murathan/shopping-app-api/items
+		// http://localhost:3001/items
 		await fetch(
 			'https://my-json-server.typicode.com/murathan/shopping-app-api/items'
 		)
