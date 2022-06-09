@@ -3,7 +3,7 @@ const ProductReducer = (state, action) => {
 		case 'FETCH_PRODUCTS':
 			return {
 				...state,
-				products: [...action.payload],
+				products: [...action.payload.items],
 			};
 		default:
 			return state;

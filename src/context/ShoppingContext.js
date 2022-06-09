@@ -54,9 +54,7 @@ const ShoppingContextProvider = ({ children }) => {
 	const fetchProducts = useCallback(async () => {
 		// https://my-json-server.typicode.com/murathan/shopping-app-api/items
 		// http://localhost:3001/items
-		await fetch(
-			'https://my-json-server.typicode.com/murathan/shopping-app-api/items'
-		)
+		await fetch('https://api.jsonbin.io/b/62a102d9449a1f3821019833')
 			.then((response) => response.json())
 			.then((json) =>
 				dispatch({

@@ -1,45 +1,18 @@
-import { useState, useEffect } from 'react';
-import {
-	StyledProductsWrapper,
-	StyledProductCard,
-	ProductImageWrapper,
-	StyledName,
-	StyledButton,
-	StyledProductRow,
-} from './styled';
-import { arrayChunk } from '../../utils';
+import { useEffect } from 'react';
+import { StyledProductsWrapper, StyledProductCard } from './styled';
 import { useShoppingContext } from '../../context/ShoppingContext';
-import Pagination from '../pagination';
-import useDeviceSize from '../../hooks/useDeviceSize';
-import { Price } from '../typography';
+import CustomPagination from '../customPagination';
 
 const Products = () => {
 	const {
 		ProductReducer: { products },
 		FilterReducer: { brands, tags, types, sortingChoice },
 		fetchProducts,
-		addProduct,
 	} = useShoppingContext();
-	// const [addedProducts, setAddedProducts] = useState([])
-
-	const [currentPage, setCurrentPage] = useState(1);
-	const [productCountPerPage, setProductCountPerPage] = useState(16);
 
 	useEffect(() => {
 		fetchProducts();
 	}, []);
-	const handleClick = (event) => {
-		setCurrentPage(Number(event.target.id));
-	};
-	let productPerRow = 4;
-	const deviceSize = useDeviceSize();
-	if (deviceSize === 'sm' || deviceSize === 'xs') {
-		productPerRow = 2;
-	} else if (deviceSize === 'md') {
-		productPerRow = 2;
-	} else if (deviceSize === 'lg') {
-		productPerRow = 3;
-	}
 
 	const brandFilteredProducts =
 		brands.length > 0
@@ -66,40 +39,17 @@ const Products = () => {
 		else if (sortingChoice === 'oldToNew') return a.added - b.added;
 	});
 
-	const indexOfLastProduct = currentPage * productCountPerPage;
-	const indexOfFirstProduct = indexOfLastProduct - productCountPerPage;
-	const currentProducts = sortedProducts.slice(
-		indexOfFirstProduct,
-		indexOfLastProduct
-	);
-
 	return (
 		<div>
 			<StyledProductsWrapper>
-				{arrayChunk(currentProducts, productPerRow).map((row, i) => (
-					<StyledProductRow key={i}>
-						{row.map((product) => (
-							<StyledProductCard key={product.id}>
-								<ProductImageWrapper>
-									<div></div>
-								</ProductImageWrapper>
-								<Price>{product.price}</Price>
-								<StyledName>{product.name}</StyledName>
-								<StyledButton onClick={() => addProduct(product)}>
-									Add
-								</StyledButton>
-							</StyledProductCard>
-						))}
-					</StyledProductRow>
-				))}
+				<CustomPagination
+					data={sortedProducts}
+					RenderComponent={StyledProductCard}
+					buttonConst={3}
+					contentPerPage={16}
+					siblingCount={2}
+				/>
 			</StyledProductsWrapper>
-			<Pagination
-				items={sortedProducts}
-				itemCountPerPage={productCountPerPage}
-				currentPage={currentPage}
-				setCurrentPage={setCurrentPage}
-				handleClick={handleClick}
-			/>
 		</div>
 	);
 };
