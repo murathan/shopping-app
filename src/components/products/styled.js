@@ -18,9 +18,6 @@ const StyledProductCard = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 124px;
-	:not(:last-child) {
-		margin-right: 24px;
-	}
 `;
 
 const ProductImageWrapper = styled.div`
